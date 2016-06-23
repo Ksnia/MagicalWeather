@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bianaiqi.components.MainActivity">
+
+    <!-- HQ Weather Clock. -->
+    <!--
+    <LinearLayout
+        android:id="@+id/hq_weather_clock_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/weather_clock_container_horizontal_margin"
+        android:paddingRight="@dimen/weather_clock_container_horizontal_margin"
+        android:layout_gravity="center_horizontal|top"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/weather_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/weather_cloud"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/clock_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextClock
+                    android:id="@+id/clock_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:ellipsize="none"
+                    android:textSize="@dimen/kg_status_clock_font_size"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:format12Hour="@string/keyguard_widget_12_hours_format"
+                    android:format24Hour="@string/keyguard_widget_24_hours_format"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/data_info_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/container_small_gap_size">
+                <TextView
+                    android:id="@+id/weekday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/data"
+                    android:layout_marginRight="@dimen/layout_margin_right_size"
+                    android:textSize="@dimen/widget_label_font_size"
+                    android:text="Monday"/>
+                <TextView
+                    android:id="@+id/data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/layout_margin_parent_right_size"
+                    android:textSize="@dimen/widget_label_font_size"
+                    android:text="March 19"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/weather_info_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/container_normal_gap_size"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/tempareture"
+                    android:layout_marginRight="@dimen/layout_margin_right_size"
+                    android:textSize="@dimen/widget_label_font_size"
+                    android:text="Cloudy"/>
+                <TextView
+                    android:id="@+id/tempareture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/layout_margin_parent_right_size"
+                    android:textSize="@dimen/widget_label_font_size"
+                    android:text="9'C - 21'C "/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/container_normal_gap_size"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:singleLine="true"
+                android:textSize="@dimen/widget_label_font_size"
+                android:text="test1 test2 test3 test4 test5 test6 test7 test8 test9 test0 testA testB testC testD"/>
+        </LinearLayout>
+    </LinearLayout>
+    -->
+
+    <com.bianaiqi.ui.CloudLayout
+        android:id="@+id/cloud_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.bianaiqi.ui.CloudLayout>
+</RelativeLayout>

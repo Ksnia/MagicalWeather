@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/background">
+    
+    <LinearLayout
+        android:id="@+id/setting_layout_temperature_format" 
+        android:layout_marginTop="@dimen/setting_view_margin_top"
+        android:paddingLeft="@dimen/setting_view_padding_left"
+        android:background="@drawable/button_selector_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_temperature_format"
+            android:textColor="@color/white"
+            android:textSize="@dimen/setting_refresh_interval_title_size">
+        </TextView>
+        <TextView
+            android:id="@+id/setting_tvew_temperature_format_value"
+            android:layout_marginTop="@dimen/setting_view_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/setting_refresh_interval_value_size">
+        </TextView>
+    </LinearLayout>
+
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setting_value_dividing_line"
+        android:paddingTop="@dimen/setting_value_dividing_line"
+        android:paddingBottom="@dimen/setting_value_dividing_line"
+        android:background="@color/dark"/>
+    
+    <LinearLayout
+        android:id="@+id/setting_layout_refesh_interval" 
+        android:layout_marginTop="@dimen/setting_view_margin_top"
+        android:paddingLeft="@dimen/setting_view_padding_left"
+        android:background="@drawable/button_selector_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_refresh_interval"
+            android:textColor="@color/white"
+            android:textSize="@dimen/setting_refresh_interval_title_size">
+        </TextView>
+        <TextView
+            android:id="@+id/setting_tvew_refresh_interval_value"
+            android:layout_marginTop="@dimen/setting_view_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/setting_refresh_interval_value_size">
+        </TextView>
+    </LinearLayout>
+</LinearLayout>

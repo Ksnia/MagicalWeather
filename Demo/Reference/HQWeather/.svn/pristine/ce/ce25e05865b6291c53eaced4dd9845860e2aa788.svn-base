@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <SearchView 
+        android:id="@+id/search_searchview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false">
+    </SearchView>
+    
+    <LinearLayout 
+        android:id="@+id/search_llyout_searching"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        
+        <ProgressBar 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/search_progress_margin_left"
+            style="?android:attr/progressBarStyleSmall"/>
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/search_hint"
+            android:layout_marginLeft="@dimen/search_hintview_margin_left"
+            android:textSize="@dimen/search_hintview_testsize"/>
+    </LinearLayout>
+    
+    <ListView 
+        android:id="@+id/search_lvew_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </ListView>
+</LinearLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/cloud_bg">
+
+    <ImageView
+        android:id="@+id/cloud_img1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/cloud1_layout_margin_top"
+        android:src="@drawable/cloud1"/>
+
+    <ImageView
+        android:id="@+id/cloud_img2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cloud2_layout_margin_top"
+        android:src="@drawable/cloud2"/>
+
+    <ImageView
+        android:id="@+id/cloud_img3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/cloud3_layout_margin_top"
+        android:src="@drawable/cloud3"/>
+
+
+    <ImageView
+        android:id="@+id/cloud_img4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/cloud4_layout_margin_left"
+        android:layout_marginTop="@dimen/cloud4_layout_margin_top"
+        android:src="@drawable/cloud4"/>
+
+    <ImageView
+        android:id="@+id/cloud_cover_bg_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/cloud_cover_bg"/>
+
+    <ImageView
+        android:id="@+id/inverted_cloud_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/inverted_cloud_layout_margin_top"
+        android:layout_marginLeft="@dimen/inverted_cloud_layout_margin_left"
+        android:src="@drawable/inverted_cloud"/>
+
+</RelativeLayout>

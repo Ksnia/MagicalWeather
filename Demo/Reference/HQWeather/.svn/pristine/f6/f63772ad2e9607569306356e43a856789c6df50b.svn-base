@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Common -->
+    <string name="app_name">Weather</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="weather_setting">Setting</string>
+    <string name="temperature_format">Temperature format</string>
+    <string name="update_frequency">Update frequency</string>
+    <string name="city_name">Your city</string>
+    <string name="setting_hint">Click to setting</string>
+    <string name="update_weather">Update</string>
+    <string name="unknow">n/a</string>
+    <string name="menu_temperature">Temperature</string>
+    <string name="menu_trend">Trend</string>
+    <string name="menu_citymanage">CityManage</string>
+    <string name="menu_setting">Setting</string>
+    <string name="menu_about">About</string>
+
+    <!-- Toast -->
+    <string name="toast_is_default">&#160;is the default city!</string>
+    <string name="toast_choice_city">Please select a city</string>
+    <string name="toast_search_condition_null">Please input a condition what you want to search</string>
+    <string name="toast_search_result_null">Please check weather your query condition is correct or your network is available</string>
+    <string name="search_hint">Searching&#8230;please wait</string>
+    
+    <!-- About -->
+    <string name="about_copyright">Copyright of MG.Rong(2013)</string>
+    
+    <!-- Temperature -->
+    <string name="temperature_high_temp">H:</string>
+    <string name="temperature_low_temp">L:</string>
+    <string name="temperature_sunrise">Sunrise:</string>
+    <string name="temperature_sunset">Sunset:</string>
+    <string name="temperature_humidity">Humidity:</string>
+    <string name="temperature_pressure">Pressure:</string>
+    
+    <!-- Setting -->
+    <string name="setting_refresh_interval">Refresh interval</string>
+    <string name="setting_temperature_format">Temperature format</string>
+    <string name="setting_positive">OK</string>
+    <string name="setting_negative">Cancel</string>
+    <string name="setting_setdefault_city">Set default city</string>
+</resources>

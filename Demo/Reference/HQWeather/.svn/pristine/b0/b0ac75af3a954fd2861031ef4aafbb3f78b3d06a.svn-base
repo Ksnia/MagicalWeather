@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        android:title="@string/weather_setting">
+    <ListPreference
+        android:key="temperature_format"
+        android:title="@string/temperature_format"
+        android:entries="@array/temperature_format_values"
+        android:entryValues="@array/temperature_format_values" 
+        android:summary="℃"       
+       />        
+    <Preference android:key="city_name"
+        android:title="@string/city_name"
+        android:summary=" "
+        />
+    <ListPreference
+        android:key="update_frequency"
+        android:title="@string/update_frequency"
+        android:entries="@array/update_frequency_values"
+        android:entryValues="@array/update_frequency_values"
+        android:summary=" "    
+        />
+    <Preference android:key="update_wether"
+        android:title="@string/update_weather"
+        android:summary=" "
+        />
+</PreferenceScreen>
+

@@ -1,0 +1,46 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="main_widget_width">280px</dimen>
+    <dimen name="main_widget_height">180px</dimen>
+    <dimen name="widget_provider_min_width">294dp</dimen>
+    <dimen name="widget_provider_min_height">140dp</dimen>
+
+    <!-- Time -->
+    <dimen name="time_margin_top">7dp</dimen>
+    <dimen name="time_layout_height">90dp</dimen>
+    <dimen name="time_hour_first_margin_left">60dp</dimen>
+    <dimen name="time_hour_second_margin_left">5dp</dimen>
+    <dimen name="time_minute_first_margin_left">32dp</dimen>
+    <dimen name="time_minute_second_margin_left">5dp</dimen>
+    
+    <!-- Weather -->
+    <dimen name="weather_layout_margin_top">40dp</dimen>
+    <dimen name="weather_city_text_size">12sp</dimen>
+    <dimen name="weather_city_temp_size">28sp</dimen>
+    <dimen name="weather_temp_text_size">10sp</dimen>
+    <dimen name="weather_update_text_size">10sp</dimen>
+    <dimen name="weather_temp_padding_top">0dp</dimen>
+    <dimen name="weather_state_margin_right">15dp</dimen>
+    <dimen name="weather_state_margin_bottom">65dp</dimen>
+    <dimen name="weather_refresh_margin_left">3dp</dimen>
+    <dimen name="weather_refresh_margin_top">3dp</dimen>
+    <dimen name="time_date_padding_top">5dp</dimen>
+    <dimen name="time_date_text_size">16sp</dimen>
+    <dimen name="time_hm_text_size">14sp</dimen>
+    <dimen name="time_margin_left">10dp</dimen>
+    <dimen name="weather_view_margin_top">60dp</dimen> 
+    <dimen name="weather_view_margin_right">30dp</dimen> 
+    <dimen name="weather_view_width">40dp</dimen>    
+    <dimen name="weather_view_height">40dp</dimen> 
+    
+    <!-- GridView -->
+    <dimen name="weather_gview_height">64dp</dimen> 
+    <dimen name="weather_gview_margin_bottom">0dp</dimen> 
+    <dimen name="forecast_view_width">28dp</dimen>
+    <dimen name="forecast_weekdy_text_size">12sp</dimen>
+    <dimen name="forecast_tem_text_size">12sp</dimen>
+    
+</resources>

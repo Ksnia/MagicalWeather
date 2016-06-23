@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/citymanager_lvew_item_height">
+    
+
+    <TextView 
+        android:id="@+id/citymanager_gvew_item_tvew_city"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@color/blue"
+        android:singleLine="true"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:paddingLeft="@dimen/citymanager_city_text_padding_left"
+        android:textSize="@dimen/citymanager_city_text_size">
+    </TextView>
+    
+    <ImageView 
+        android:id="@+id/citymanager_gvew_item_ivew_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_default"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:visibility="gone"
+        android:contentDescription="@string/app_name" >     
+    </ImageView>
+    
+    <LinearLayout 
+        android:id="@+id/citymanager_gvew_item_lyout_add"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+	    <ImageView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/button_selector_add"
+	        android:scaleType="centerCrop"
+	        android:contentDescription="@string/app_name" >     
+	    </ImageView>
+    </LinearLayout>
+    
+    <ImageView 
+        android:id="@+id/citymanager_gvew_item_ivew_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector_delete"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_marginRight="@dimen/citymanager_lvew_item_ivew_delete_padding_right"
+        android:contentDescription="@string/app_name" >     
+    </ImageView>
+</RelativeLayout>

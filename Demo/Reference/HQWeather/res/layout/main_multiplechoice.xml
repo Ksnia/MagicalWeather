@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/main_btn_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_temperature">
+    </Button>
+    
+    <Button
+        android:id="@+id/main_btn_trend"
+        android:layout_below="@id/main_btn_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_trend">
+    </Button>
+    
+    <Button
+        android:id="@+id/main_btn_citymanage"
+        android:layout_below="@id/main_btn_trend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_citymanage">
+    </Button>
+    
+    <Button
+        android:id="@+id/main_btn_setting"
+        android:layout_below="@id/main_btn_citymanage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_setting">
+    </Button>
+    
+    <Button
+        android:id="@+id/main_btn_about"
+        android:layout_below="@id/main_btn_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_about">
+    </Button>
+</RelativeLayout>

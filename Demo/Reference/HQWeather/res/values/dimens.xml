@@ -1,0 +1,75 @@
+<resources>
+
+    <dimen name="search_hintview_testsize">15sp</dimen>
+    <dimen name="search_progress_margin_left">5dp</dimen>
+    <dimen name="search_hintview_margin_left">5dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="main_widget_width">280px</dimen>
+    <dimen name="main_widget_height">200px</dimen>
+    <dimen name="widget_provider_min_width">294dp</dimen>
+    <dimen name="widget_provider_min_height">72dp</dimen>
+    
+    <!-- Time -->
+    <dimen name="time_margin_top">7dp</dimen>
+    <dimen name="time_layout_height">90dp</dimen>
+    <dimen name="time_hour_first_margin_left">60dp</dimen>
+    <dimen name="time_hour_second_margin_left">5dp</dimen>
+    <dimen name="time_minute_first_margin_left">32dp</dimen>
+    <dimen name="time_minute_second_margin_left">5dp</dimen>
+    
+    <!-- Weather -->
+    <dimen name="weather_layout_margin_top">40dp</dimen>
+    <dimen name="weather_city_text_size">12sp</dimen>
+    <dimen name="weather_city_temp_size">28sp</dimen>
+    <dimen name="weather_temp_text_size">10sp</dimen>
+    <dimen name="weather_update_text_size">10sp</dimen>
+    <dimen name="weather_temp_padding_top">0dp</dimen>
+    <dimen name="weather_state_margin_right">15dp</dimen>
+    <dimen name="weather_state_margin_bottom">65dp</dimen>
+    <dimen name="weather_refresh_margin_left">3dp</dimen>
+    <dimen name="weather_refresh_margin_top">3dp</dimen>
+    <dimen name="time_date_padding_top">5dp</dimen>
+    <dimen name="time_date_text_size">16sp</dimen>
+    <dimen name="time_hm_text_size">14sp</dimen>
+    <dimen name="time_margin_left">10dp</dimen>
+    <dimen name="weather_view_margin_top">60dp</dimen> 
+    <dimen name="weather_view_margin_right">30dp</dimen> 
+    <dimen name="weather_view_width">40dp</dimen>    
+    <dimen name="weather_view_height">40dp</dimen> 
+    
+    <!-- GridView -->
+    <dimen name="weather_gview_height">64dp</dimen> 
+    <dimen name="forecast_view_width">28dp</dimen>
+    <dimen name="forecast_weekdy_text_size">12sp</dimen>
+    <dimen name="forecast_tem_text_size">12sp</dimen>
+    
+    <!-- Setting -->
+    <dimen name="setting_margin_left">250dp</dimen>
+    <dimen name="setting_refresh_interval_title_size">20sp</dimen>
+    <dimen name="setting_refresh_interval_value_size">15sp</dimen>
+    <dimen name="setting_view_margin_top">5dp</dimen>
+    <dimen name="setting_view_padding_left">5dp</dimen>
+    <dimen name="setting_value_dividing_line">1px</dimen>
+    <dimen name="setting_view_value">2dp</dimen>
+    
+    <!-- Temperature -->
+    <dimen name="temperature_tvew_temp_size">50sp</dimen>
+    <dimen name="temperature_tvew_text_size">25sp</dimen>
+    <dimen name="temperature_tvew_code_size">20sp</dimen>
+    <dimen name="temperature_tvew_detail_size">10sp</dimen>
+    <dimen name="temperature_layout_paddingleft">20dp</dimen>
+    <dimen name="temperature_tvew_code_marginleft">10dp</dimen>
+    <dimen name="temperature_tvew_pubdate_marginleft">5dp</dimen>
+    
+    <!-- CityManager -->
+    <dimen name="citymanager_city_text_size">15sp</dimen>
+    <dimen name="citymanager_city_text_padding_left">20dp</dimen>
+    <dimen name="citymanager_lvew_item_height">100dp</dimen>
+    <dimen name="citymanager_lvew_item_ivew_delete_padding_right">10dp</dimen>
+    <dimen name="citymanager_lvew_item_ivew_default_padding_right">40dp</dimen>
+    <dimen name="citymanager_gvew_item_height">100dp</dimen>
+    <dimen name="citymanager_gvew_item_ivew_delete_margin_top">1dp</dimen>
+    <dimen name="citymanager_gvew_item_ivew_delete_padding_right">-10dp</dimen>
+</resources>

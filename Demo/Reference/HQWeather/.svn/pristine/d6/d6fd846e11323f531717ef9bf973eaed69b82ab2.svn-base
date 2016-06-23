@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#2F2F2F">
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+        
+        <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/temperature_layout_paddingleft">
+            
+            <TextView 
+                android:id="@+id/temperature_tvew_current_temp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/temperature_tvew_temp_size"
+                android:text="@string/unknow"/>
+            
+            <TextView 
+                android:id="@+id/temperature_tvew_current_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/temperature_tvew_text_size"
+                android:text="@string/unknow"/>
+            
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="left">
+                
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="@string/temperature_high_temp"
+                    android:textSize="@dimen/temperature_tvew_code_size"/>
+                
+                <TextView 
+                    android:id="@+id/temperature_tvew_high_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="@string/unknow"
+                    android:textSize="@dimen/temperature_tvew_code_size"/>
+                                
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/temperature_tvew_code_marginleft"
+                    android:textColor="@color/white"
+                    android:text="@string/temperature_low_temp" 
+                    android:textSize="@dimen/temperature_tvew_code_size"/>
+                                                
+                <TextView 
+                    android:id="@+id/temperature_tvew_low_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="@string/unknow"
+                    android:textSize="@dimen/temperature_tvew_code_size"/>
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+            
+            <ImageView 
+                android:id="@+id/temperature_ivew_weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/weather_na"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/app_name">
+            </ImageView>
+        </LinearLayout>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/temperature_lyout_detail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/temperature_layout_paddingleft">
+        
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/temperature_humidity"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/temperature_tvew_detail_size"/>
+                <TextView 
+                    android:id="@+id/temperature_tvew_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark"
+                    android:text="@string/unknow"
+                    android:textSize="@dimen/temperature_tvew_detail_size"/>
+            </LinearLayout>
+            
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/temperature_sunrise"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/temperature_tvew_detail_size"/>
+                <TextView 
+                    android:id="@+id/temperature_tvew_sunrise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark"
+                    android:text="@string/unknow"
+                    android:textSize="@dimen/temperature_tvew_detail_size"/>
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/temperature_layout_paddingleft">
+            
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/temperature_pressure"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/temperature_tvew_detail_size"/>
+                <TextView 
+                    android:id="@+id/temperature_tvew_pressure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark"
+                    android:text="@string/unknow"
+                    android:textSize="@dimen/temperature_tvew_detail_size"/>
+            </LinearLayout>
+            
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/temperature_sunset"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/temperature_tvew_detail_size"/>
+                <TextView 
+                    android:id="@+id/temperature_tvew_sunset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark"
+                    android:text="@string/unknow"
+                    android:textSize="@dimen/temperature_tvew_detail_size"/>
+            </LinearLayout>
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    <RelativeLayout 
+        android:id="@+id/temperature_ryout_update"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        
+        <ImageView 
+            android:id="@+id/temperature_ivew_pubdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_refresh"
+            android:layout_centerInParent="true"/>
+        <TextView
+            android:id="@+id/temperature_tvew_pubdate"
+            android:layout_alignTop="@id/temperature_ivew_pubdate"
+            android:layout_toRightOf="@id/temperature_ivew_pubdate"
+            android:layout_marginLeft="@dimen/temperature_tvew_pubdate_marginleft"
+            android:textSize="@dimen/temperature_tvew_detail_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark"
+            android:text="@string/unknow"/>
+    </RelativeLayout>
+</LinearLayout>
