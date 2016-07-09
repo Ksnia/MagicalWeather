@@ -6,8 +6,29 @@
     android:layout_height="match_parent"
     tools:context="com.bianaiqi.components.MainActivity">
 
-    <!-- HQ Weather Clock. -->
     <!--
+    <com.bianaiqi.ui.CloudLayout
+        android:id="@+id/cloud_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        </com.bianaiqi.ui.CloudLayout>
+    -->
+
+    <!--
+    <com.bianaiqi.ui.SunDayLayout
+        android:id="@+id/sunday_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.bianaiqi.ui.SunDayLayout>
+    -->
+
+    <com.bianaiqi.ui.SunNightLayout
+        android:id="@+id/sunnight_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.bianaiqi.ui.SunNightLayout>
+
+    <!-- HQ Weather Clock. -->
     <LinearLayout
         android:id="@+id/hq_weather_clock_container"
         android:layout_width="match_parent"
@@ -21,7 +42,7 @@
             android:id="@+id/weather_icon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/weather_cloud"/>
+            android:src="@drawable/sun"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,11 +127,5 @@
                 android:text="test1 test2 test3 test4 test5 test6 test7 test8 test9 test0 testA testB testC testD"/>
         </LinearLayout>
     </LinearLayout>
-    -->
 
-    <com.bianaiqi.ui.CloudLayout
-        android:id="@+id/cloud_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.bianaiqi.ui.CloudLayout>
 </RelativeLayout>

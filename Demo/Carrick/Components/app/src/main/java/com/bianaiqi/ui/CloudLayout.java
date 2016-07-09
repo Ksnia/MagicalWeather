@@ -2,6 +2,7 @@ package com.bianaiqi.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -20,6 +21,12 @@ import com.bianaiqi.util.AnimUtils;
  */
 public class CloudLayout extends FrameLayout {
 
+    private final int ANIMATION_START_DELAY_DURATION = 5000;
+    private final int CLOUD_MOVE_DURATION = 1500;
+    private final int CLOUD_PAUSE_DURATION = 2000;
+    private final int CLOUD_BACK_DURATION = 1750;
+
+    private View rootView;
     private ImageView mCloud1;
     private ImageView mCloud2;
     private ImageView mCloud3;
@@ -38,7 +45,7 @@ public class CloudLayout extends FrameLayout {
     }
 
     private void onInit() {
-        View rootView = inflate(getContext(), R.layout.cloud_layout, this);
+        rootView = inflate(getContext(), R.layout.cloud_layout, this);
 
         mCloud1 = (ImageView) findViewById(R.id.cloud_img1);
         mCloud2 = (ImageView) findViewById(R.id.cloud_img2);
@@ -50,15 +57,33 @@ public class CloudLayout extends FrameLayout {
     }
 
     public void doCloudAnimation() {
-        Animator anim_cloud1 = AnimUtils.createCloudAnimator(mCloud1, -16f);
-        Animator anim_cloud2 = AnimUtils.createCloudAnimator(mCloud2, -12f);
-        Animator anim_cloud3 = AnimUtils.createCloudAnimator(mCloud3, 12f);
-        Animator anim_cloud4 = AnimUtils.createCloudAnimator(mCloud4, 12f);
-        Animator anim_inverted_cloud = AnimUtils.createCloudAnimator(mInvertedcloud, -12f);
+        Animator anim_cloud1 = createCloudAnimator(mCloud1, -15f);
+        Animator anim_cloud2 = createCloudAnimator(mCloud2, -10f);
+        Animator anim_cloud3 = createCloudAnimator(mCloud3, 12f);
+        Animator anim_cloud4 = createCloudAnimator(mCloud4, 12f);
+        Animator anim_inverted_cloud = createCloudAnimator(mInvertedcloud, -12f);
 
         AnimatorSet s = new AnimatorSet();
         s.playTogether(anim_cloud1, anim_cloud2, anim_cloud3, anim_cloud4, anim_inverted_cloud);
-        s.setStartDelay(AnimUtils.ANIMATION_START_DELAY_DURATION);
+        s.setStartDelay(ANIMATION_START_DELAY_DURATION);
         s.start();
+    }
+
+    private ObjectAnimator createTranslationYAnimator(View v, float translationY) {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(v, "translationY", translationY);
+        return animator;
+    }
+
+    private Animator createCloudAnimator(View v, float translationY) {
+        AnimatorSet animator = new AnimatorSet();
+
+        ObjectAnimator anim_move = createTranslationYAnimator(v, translationY);
+        anim_move.setDuration(CLOUD_MOVE_DURATION);
+        ObjectAnimator anim_back = createTranslationYAnimator(v, 0f);
+        anim_back.setDuration(CLOUD_BACK_DURATION);
+        anim_back.setStartDelay(CLOUD_PAUSE_DURATION);
+
+        animator.play(anim_back).after(anim_move);
+        return animator;
     }
 }

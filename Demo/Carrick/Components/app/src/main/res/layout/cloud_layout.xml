@@ -38,7 +38,7 @@
 
     <ImageView
         android:id="@+id/cloud_cover_bg_img"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:src="@drawable/cloud_cover_bg"/>

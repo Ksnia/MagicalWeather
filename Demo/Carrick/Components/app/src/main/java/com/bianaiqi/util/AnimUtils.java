@@ -14,28 +14,8 @@ import android.view.View;
  */
 public class AnimUtils {
 
-    public static final int ANIMATION_START_DELAY_DURATION = 3000;
-    private final static int CLOUD_MOVE_DURATION = 1000;
-    private final static int CLOUD_PAUSE_DURATION = 1700;
-    private final static int CLOUD_BACK_DURATION = 1250;
-
-
-    public static ObjectAnimator createTranslationYAnimator(View v, float translationY) {
-        ObjectAnimator animator = ObjectAnimator.ofFloat(v, "translationY", translationY);
-        return animator;
-    }
-
-    public static Animator createCloudAnimator(View v, float translationY) {
-        AnimatorSet animator = new AnimatorSet();
-
-        ObjectAnimator anim_move = createTranslationYAnimator(v, translationY);
-        anim_move.setDuration(CLOUD_MOVE_DURATION);
-        ObjectAnimator anim_back = createTranslationYAnimator(v, 0f);
-        anim_back.setDuration(CLOUD_BACK_DURATION);
-        anim_back.setStartDelay(CLOUD_PAUSE_DURATION);
-
-        animator.play(anim_back).after(anim_move);
-        return animator;
-    }
-
+    public static final int ANIMATION_START_DELAY_DURATION = 5000;
+    private final static int CLOUD_MOVE_DURATION = 1500;  // 1000
+    private final static int CLOUD_PAUSE_DURATION = 2000; // 1750
+    private final static int CLOUD_BACK_DURATION = 1750;  // 1250
 }

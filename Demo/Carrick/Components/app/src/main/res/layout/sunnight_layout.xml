@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sunnight_bg">
+
+    <ImageView
+        android:id="@+id/shooting_star_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/star1_layout_margin_left"
+        android:layout_marginTop="@dimen/star1_layout_margin_top"
+        android:src="@drawable/start1"/>
+
+    <ImageView
+        android:id="@+id/shooting_star_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/star2_layout_margin_top"
+        android:layout_marginLeft="@dimen/star2_layout_margin_left"
+        android:src="@drawable/start2"/>
+
+    <ImageView
+        android:id="@+id/shooting_star_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/star3_layout_margin_left"
+        android:layout_marginTop="@dimen/star3_layout_margin_top"
+        android:src="@drawable/start3"/>
+
+    <com.bianaiqi.ui.RippleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</FrameLayout>
