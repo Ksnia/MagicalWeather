@@ -20,12 +20,39 @@ import com.bianaiqi.components.R;
  * Created by Carrick on 2016/7/6.
  */
 
-public class SunDayLayout extends FrameLayout {
+public class SunDayLayout extends WeatherLayout {
 
     private View rootView;
     private ImageView mHalo;
     private ImageView mShip;
     private AnimatorSet mSunAnimator;
+
+    private Animator.AnimatorListener listener = new Animator.AnimatorListener() {
+
+        @Override
+        public void onAnimationStart(Animator animation) {
+            // TODO Auto-generated method stub
+            setAnimationState(true);
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            // TODO Auto-generated method stub
+            setAnimationState(false);
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {
+            // TODO Auto-generated method stub
+            setAnimationState(false);
+        }
+    };
 
     public SunDayLayout(Context context){
         super(context);
@@ -37,30 +64,48 @@ public class SunDayLayout extends FrameLayout {
         onViewInit();
     }
 
+    @Override
+    public void startAnimation() {
+        if(null != mSunAnimator && !getAnimationState()){
+            mSunAnimator.start();
+        }
+    }
+
+    @Override
+    public void stopAnimation() {
+        if(null != mSunAnimator){
+            mSunAnimator.cancel();
+        }
+    }
+
     private void onViewInit(){
         rootView = inflate(getContext(), R.layout.sunday_layout, this);
+
+        mWeatherIcon = (ImageView) findViewById(R.id.weather_icon);
+        showWeatherIcon();
+        mWeatherIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startAnimation();
+            }
+        });
 
         mHalo = (ImageView) findViewById(R.id.halo);
         mShip = (ImageView) findViewById(R.id.ship);
 
         mSunAnimator = createSunDayAnimator();
-        doSunAnimation();
-    }
-
-    public void doSunAnimation(){
-        if(null != mSunAnimator){
-            mSunAnimator.start();
-        }
+        startAnimation();
     }
 
     private AnimatorSet createSunDayAnimator(){
         AnimatorSet haloAnimator = createHaloAnimator();
         Animator shipAnimator = createShipAnimator();
 
-        AnimatorSet sunAnimator = new AnimatorSet();
-        sunAnimator.setStartDelay(3000);
-        sunAnimator.playTogether(haloAnimator,shipAnimator);
-        return sunAnimator;
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.addListener(listener);
+        animatorSet.setStartDelay(3000);
+        animatorSet.playTogether(haloAnimator,shipAnimator);
+        return animatorSet;
     }
 
     private AnimatorSet createHaloAnimator(){

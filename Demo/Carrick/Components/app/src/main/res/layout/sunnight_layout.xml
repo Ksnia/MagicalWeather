@@ -5,6 +5,11 @@
     android:background="@drawable/sunnight_bg">
 
     <ImageView
+        android:id="@+id/weather_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
         android:id="@+id/shooting_star_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

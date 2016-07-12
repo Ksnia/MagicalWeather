@@ -12,43 +12,45 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.bianaiqi.components.R;
 
 /**
- * Created by Carrick on 2016/7/9.
+ * Created by Carrick on 2016/7/11.
  */
-public class RippleView extends SurfaceView implements SurfaceHolder.Callback{
+public class LightningView extends SurfaceView implements SurfaceHolder.Callback{
 
     private Context mContext;
     private Resources mRes;
     private SurfaceHolder mRippleSurfaceHolder;
     private DrawThread mThread;
 
-    private final int ANIMATION_INTERVAL = 50;
-    private final int IMAGE_COUNT = 13;
-    private int mHeight;
-    private int mWidth;
+    private final int ANIMATION_INTERVAL = 60;
+    private final int IMAGE_COUNT = 25;
     private int index = 0;
-    private int[] mResId = {R.drawable.ripple0,R.drawable.ripple1,R.drawable.ripple2,R.drawable.ripple3,
-            R.drawable.ripple4,R.drawable.ripple5,R.drawable.ripple6,R.drawable.ripple7,
-            R.drawable.ripple8,R.drawable.ripple9,R.drawable.ripple10,R.drawable.ripple11,
-            R.drawable.ripple12};
 
-    public RippleView(Context context) {
+    private final int[] mResId = {R.drawable.flash_a0, R.drawable.flash_a2, R.drawable.flash_a4,
+            R.drawable.flash_a6, R.drawable.flash_a8, R.drawable.flash_a10,
+            R.drawable.flash_a12, R.drawable.flash_a14, R.drawable.flash_a16,
+            R.drawable.flash_a18, R.drawable.flash_a20, R.drawable.flash_b0,
+            R.drawable.flash_b1, R.drawable.flash_b2, R.drawable.flash_b3,
+            R.drawable.flash_b4, R.drawable.flash_b5, R.drawable.flash_b6,
+            R.drawable.flash_b13, R.drawable.flash_b14, R.drawable.flash_b16,
+            R.drawable.flash_b18, R.drawable.flash_b19, R.drawable.flash_b20,
+            R.drawable.flash_b21};
+
+    public LightningView(Context context) {
         super(context);
         mContext = context;
         this.setZOrderOnTop(true);
         mRippleSurfaceHolder = this.getHolder();
         mRippleSurfaceHolder.setFormat(PixelFormat.TRANSPARENT);
         mRippleSurfaceHolder.addCallback(this);
-
     }
 
-    public RippleView(Context context, AttributeSet attrs) {
+    public LightningView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         this.setZOrderOnTop(true);
@@ -57,18 +59,38 @@ public class RippleView extends SurfaceView implements SurfaceHolder.Callback{
         mRippleSurfaceHolder.addCallback(this);
     }
 
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        onInit();
+        if(null == mThread){
+            mThread = new DrawThread();
+        }
+        mThread.start();
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        if(null != mThread){
+            mThread.exit();
+            mThread = null;
+        }
+        onDeInit();
+    }
+
     private void onInit(){
         mRes = mContext.getResources();
-        DisplayMetrics dm = mRes.getDisplayMetrics();
-        mHeight = dm.heightPixels;
-        mWidth = dm.widthPixels;
     }
 
     private void onDeInit(){
         index = 0;
     }
 
-    private void drawRipple(){
+    private void drawLightning(){
         try {
             Canvas canvas = mRippleSurfaceHolder.lockCanvas();
             Paint paint = new Paint();
@@ -81,8 +103,7 @@ public class RippleView extends SurfaceView implements SurfaceHolder.Callback{
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
             Drawable drawable = mRes.getDrawable(mResId[index]);
             Bitmap bmp = ((BitmapDrawable) drawable).getBitmap();
-            float top = mHeight - bmp.getHeight() + 18;
-            canvas.drawBitmap(bmp, 0, top, paint);
+            canvas.drawBitmap(bmp, 0, 0, paint);
 
             if (mRippleSurfaceHolder.getSurface().isValid()) {
                 mRippleSurfaceHolder.unlockCanvasAndPost(canvas);
@@ -107,7 +128,7 @@ public class RippleView extends SurfaceView implements SurfaceHolder.Callback{
         public void run() {
             super.run();
             while (!done){
-                drawRipple();
+                drawLightning();
                 index = index + 1;
 
                 if(IMAGE_COUNT == index){
@@ -122,28 +143,5 @@ public class RippleView extends SurfaceView implements SurfaceHolder.Callback{
 
             }
         }
-    }
-
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        onInit();
-        if(null == mThread){
-            mThread = new DrawThread();
-        }
-        mThread.start();
-    }
-
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-    }
-
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
-        if(null != mThread){
-            mThread.exit();
-            mThread = null;
-        }
-        onDeInit();
     }
 }

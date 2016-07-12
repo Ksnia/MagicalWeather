@@ -6,10 +6,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bianaiqi.components.R;
@@ -17,13 +14,40 @@ import com.bianaiqi.components.R;
 /**
  * Created by Carrick on 2016/7/7.
  */
-public class SunNightLayout extends FrameLayout {
+public class SunNightLayout extends WeatherLayout {
 
     private View rootView;
     private ImageView mShootingStar1;
     private ImageView mShootingStar2;
     private ImageView mShootingStar3;
     private AnimatorSet mSunNightAnimator;
+
+    private Animator.AnimatorListener listener = new Animator.AnimatorListener() {
+
+        @Override
+        public void onAnimationStart(Animator animation) {
+            // TODO Auto-generated method stub
+            setAnimationState(true);
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            // TODO Auto-generated method stub
+            setAnimationState(false);
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {
+            // TODO Auto-generated method stub
+            setAnimationState(false);
+        }
+    };
 
     public SunNightLayout(Context context){
         super(context);
@@ -35,21 +59,38 @@ public class SunNightLayout extends FrameLayout {
         onViewInit();
     }
 
+    @Override
+    public void startAnimation() {
+        if(null != mSunNightAnimator && !getAnimationState()){
+            mSunNightAnimator.start();
+        }
+    }
+
+    @Override
+    public void stopAnimation() {
+        if(null != mSunNightAnimator){
+            mSunNightAnimator.cancel();
+        }
+    }
+
     private void onViewInit(){
         rootView = inflate(getContext(), R.layout.sunnight_layout, this);
+
+        mWeatherIcon = (ImageView) findViewById(R.id.weather_icon);
+        showWeatherIcon();
+        mWeatherIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startAnimation();
+            }
+        });
 
         mShootingStar1 = (ImageView) findViewById(R.id.shooting_star_1);
         mShootingStar2 = (ImageView) findViewById(R.id.shooting_star_2);
         mShootingStar3 = (ImageView) findViewById(R.id.shooting_star_3);
 
         mSunNightAnimator = createSunNightAnimator();
-        doSunNightAnimation();
-    }
-
-    private void doSunNightAnimation(){
-        if(null != mSunNightAnimator){
-            mSunNightAnimator.start();
-        }
+        startAnimation();
     }
 
     private AnimatorSet createSunNightAnimator(){
@@ -59,6 +100,7 @@ public class SunNightLayout extends FrameLayout {
         Animator animStar2 = createShootingStar2Animator();
         Animator animStar3 = createShootingStar3Animator();
 
+        animatorSet.addListener(listener);
         animatorSet.setStartDelay(5000);
         animatorSet.playSequentially(animStar1,animStar2,animStar3);
         return animatorSet;

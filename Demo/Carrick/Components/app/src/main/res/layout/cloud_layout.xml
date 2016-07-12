@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/cloud_bg">
+
+    <ImageView
+        android:id="@+id/weather_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <ImageView
         android:id="@+id/cloud_img1"
@@ -27,7 +32,6 @@
         android:layout_marginTop="@dimen/cloud3_layout_margin_top"
         android:src="@drawable/cloud3"/>
 
-
     <ImageView
         android:id="@+id/cloud_img4"
         android:layout_width="wrap_content"
@@ -40,7 +44,7 @@
         android:id="@+id/cloud_cover_bg_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
         android:src="@drawable/cloud_cover_bg"/>
 
     <ImageView
@@ -51,4 +55,4 @@
         android:layout_marginLeft="@dimen/inverted_cloud_layout_margin_left"
         android:src="@drawable/inverted_cloud"/>
 
-</RelativeLayout>
+</FrameLayout>

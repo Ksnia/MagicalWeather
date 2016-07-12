@@ -11,8 +11,13 @@
 
     <dimen name="kg_status_clock_font_size">65sp</dimen>
     <dimen name="widget_label_font_size">14sp</dimen>
-    
 
+    <!-- WeatherLayout -->
+    <dimen name="weather_icon_margin_top">16dp</dimen>
+    <dimen name="weather_icon_margin_left">48dp</dimen>
+    <!-- WeatherLayout -->
+
+    <!-- CloudLayout -->
     <dimen name="cloud1_layout_margin_top">385dp</dimen>
     <dimen name="cloud2_layout_margin_top">428dp</dimen>
     <dimen name="cloud3_layout_margin_top">408dp</dimen>
@@ -20,17 +25,26 @@
     <dimen name="cloud4_layout_margin_left">60dp</dimen>
     <dimen name="inverted_cloud_layout_margin_top">464dp</dimen>
     <dimen name="inverted_cloud_layout_margin_left">85dp</dimen>
+    <!-- CloudLayout -->
 
+    <!-- SunDayLayout -->
     <dimen name="halo_layout_margin_top">-190dp</dimen>
     <dimen name="halo_layout_margin_left">-220dp</dimen>
     <dimen name="ship_layout_margin_top">438dp</dimen>
     <dimen name="ship_layout_margin_right">0dp</dimen>
+    <!-- SunDayLayout -->
 
+    <!-- SunNightLayout -->
     <dimen name="star1_layout_margin_top">60dp</dimen>
     <dimen name="star1_layout_margin_left">-105dp</dimen>
     <dimen name="star2_layout_margin_top">30dp</dimen>
     <dimen name="star2_layout_margin_left">-65dp</dimen>
     <dimen name="star3_layout_margin_top">10dp</dimen>
     <dimen name="star3_layout_margin_left">-60dp</dimen>
+    <!-- SunNightLayout -->
 
+    <!-- FogLayout -->
+    <dimen name="mountainfront_layout_margin_bottom">364dp</dimen>
+    <dimen name="mountainback_layout_margin_bottom">402dp</dimen>
+    <!-- FogLayout -->
 </resources>

@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -19,9 +21,9 @@ import com.bianaiqi.util.AnimUtils;
  *
  * @version ${VERSION}
  */
-public class CloudLayout extends FrameLayout {
+public class CloudLayout extends WeatherLayout {
 
-    private final int ANIMATION_START_DELAY_DURATION = 5000;
+    private final int ANIMATION_START_DELAY_DURATION = 2000;
     private final int CLOUD_MOVE_DURATION = 1500;
     private final int CLOUD_PAUSE_DURATION = 2000;
     private final int CLOUD_BACK_DURATION = 1750;
@@ -32,7 +34,34 @@ public class CloudLayout extends FrameLayout {
     private ImageView mCloud3;
     private ImageView mCloud4;
     private ImageView mInvertedcloud;
+    private AnimatorSet mCloudAnimator;
 
+    private Animator.AnimatorListener listener = new Animator.AnimatorListener() {
+
+        @Override
+        public void onAnimationStart(Animator animation) {
+            // TODO Auto-generated method stub
+            setAnimationState(true);
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            // TODO Auto-generated method stub
+            setAnimationState(false);
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {
+            // TODO Auto-generated method stub
+            setAnimationState(false);
+        }
+    };
 
     public CloudLayout(Context context) {
         super(context);
@@ -44,8 +73,36 @@ public class CloudLayout extends FrameLayout {
         onInit();
     }
 
+    @Override
+    public void setAnimationState(boolean state) {
+
+    }
+
+    @Override
+    public void startAnimation() {
+        if(null != mCloudAnimator && !getAnimationState()){
+            mCloudAnimator.start();
+        }
+    }
+
+    @Override
+    public void stopAnimation() {
+        if(null != mCloudAnimator){
+            mCloudAnimator.cancel();
+        }
+    }
+
     private void onInit() {
         rootView = inflate(getContext(), R.layout.cloud_layout, this);
+
+        mWeatherIcon = (ImageView) findViewById(R.id.weather_icon);
+        showWeatherIcon();
+        mWeatherIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startAnimation();
+            }
+        });
 
         mCloud1 = (ImageView) findViewById(R.id.cloud_img1);
         mCloud2 = (ImageView) findViewById(R.id.cloud_img2);
@@ -53,20 +110,22 @@ public class CloudLayout extends FrameLayout {
         mCloud4 = (ImageView) findViewById(R.id.cloud_img4);
         mInvertedcloud = (ImageView) findViewById(R.id.inverted_cloud_img);
 
-        doCloudAnimation();
+        mCloudAnimator = createCloudAnimator();
+        startAnimation();
     }
 
-    public void doCloudAnimation() {
+    public AnimatorSet createCloudAnimator() {
         Animator anim_cloud1 = createCloudAnimator(mCloud1, -15f);
         Animator anim_cloud2 = createCloudAnimator(mCloud2, -10f);
         Animator anim_cloud3 = createCloudAnimator(mCloud3, 12f);
         Animator anim_cloud4 = createCloudAnimator(mCloud4, 12f);
         Animator anim_inverted_cloud = createCloudAnimator(mInvertedcloud, -12f);
 
-        AnimatorSet s = new AnimatorSet();
-        s.playTogether(anim_cloud1, anim_cloud2, anim_cloud3, anim_cloud4, anim_inverted_cloud);
-        s.setStartDelay(ANIMATION_START_DELAY_DURATION);
-        s.start();
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.addListener(listener);
+        animatorSet.playTogether(anim_cloud1, anim_cloud2, anim_cloud3, anim_cloud4, anim_inverted_cloud);
+        animatorSet.setStartDelay(ANIMATION_START_DELAY_DURATION);
+        return animatorSet;
     }
 
     private ObjectAnimator createTranslationYAnimator(View v, float translationY) {
