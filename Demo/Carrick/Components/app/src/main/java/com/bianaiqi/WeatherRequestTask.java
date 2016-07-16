@@ -1,45 +1,47 @@
 package com.bianaiqi;
 
+import android.content.Context;
 import android.os.AsyncTask;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 import com.bianaiqi.util.MyLog;
+import com.bianaiqi.weather.WeatherConstant;
+import com.bianaiqi.weather.data.local.WeatherCity;
 import com.bianaiqi.weather.data.local.WeatherDataItem;
 import com.bianaiqi.weather.engine.Engine;
+import com.bianaiqi.weather.engine.EngineFactory;
 
 /**
  * Created by Carrick on 2016/7/13.
  */
 public class WeatherRequestTask extends AsyncTask {
-
-    public static final int QUERY_REQUEST_ITEM = 1;
-    public static final int QUERY_REQUEST_LIST = 2;
-    public static final int QUERY_REQUEST_NONE = 3;
-    public static final int DEFAULT_QUERY_REQUEST = QUERY_REQUEST_ITEM;
-
-    private int mRequestType;
+    private Context mContext;
     private Engine mEngine;
-    private final Set<WeatherRequestHandler> mListeners = Collections.newSetFromMap(
-            new ConcurrentHashMap<WeatherRequestHandler, Boolean>(8, 0.9f, 1));
-
+    private int mRequestType;
+    private WeatherRequestHandler mListener;
+	
     public interface WeatherRequestHandler {
-        void requestSuccessful(String string);
-
+        void requestSuccessful(WeatherDataItem data);
+        void requestSuccessful(ArrayList<WeatherDataItem> list);
         void requestFailed();
+    }
+
+    public WeatherRequestTask(Context context, EngineFactory.EngineType type, WeatherCity city, int requestType) {
+        this.mContext = context;
+        this.mRequestType = requestType;
+        mEngine = EngineFactory.createEngine(city,type);
     }
 
     @Override
     protected Object doInBackground(Object[] params) {
         try {
             MyLog.d(this.getClass(), "doInBackground  mRequestType = " + mRequestType);
-            if (QUERY_REQUEST_ITEM == mRequestType) {
+            if (WeatherConstant.QUERY_REQUEST_ITEM == mRequestType) {
                 WeatherDataItem data = getCurData();
-                MyLog.d(this.getClass(), "    doInBackground  data = " + data);
+                MyLog.d(this.getClass(), "doInBackground  data = " + data);
                 return data;
-            } else if (QUERY_REQUEST_LIST == mRequestType) {
+            } else if (WeatherConstant.QUERY_REQUEST_LIST == mRequestType) {
                 ArrayList<WeatherDataItem> list = getForeastData();
                 return list;
             } else {
@@ -55,50 +57,33 @@ public class WeatherRequestTask extends AsyncTask {
     @Override
     protected void onPostExecute(Object object) {
         // Done on UI Thread
-        MyLog.d(this.getClass(), " onPostExecute mRequestType = " + mRequestType + "; Object = " + object);
+        MyLog.d(this.getClass(), "onPostExecute mRequestType = " + mRequestType + "; Object = " + object);
         try {
-            if (QUERY_REQUEST_ITEM == mRequestType) {
+            if (WeatherConstant.QUERY_REQUEST_ITEM == mRequestType) {
                 if (null != object) {
                     WeatherDataItem item = (WeatherDataItem) object;
-                    String str = "";
-                    if (item != null) {
-                        str = item.toString();
-                    }
-                    MyLog.d(this.getClass(), "    str = " + str);
-                    onSuccessRequset(str);
+                    onSuccessRequset(item);
                 } else {
                     onFailRequset();
                 }
-            } else if (QUERY_REQUEST_LIST == mRequestType) {
-                MyLog.d(this.getClass(), "    onPostExecute  mRequestType = QUERY_RESPONSE_LIST");
+            } else if (WeatherConstant.QUERY_REQUEST_LIST == mRequestType) {
+                MyLog.d(this.getClass(), "onPostExecute  mRequestType = QUERY_RESPONSE_LIST");
                 onFailRequset();
             } else {
-                MyLog.d(this.getClass(), "    onPostExecute  mRequestType = else");
+                MyLog.d(this.getClass(), "onPostExecute  mRequestType = else");
                 onFailRequset();
             }
         } catch (Exception e) {
-            MyLog.d(this.getClass(), "    onPostExecute  Exception = " + e);
+            MyLog.d(this.getClass(), "onPostExecute  Exception = " + e);
             onFailRequset();
         }
-    }
-
-    public void setRequestType(int type) {
-        mRequestType = type;
-    }
-
-    public void setEngine(Engine engine) {
-        mEngine = engine;
-    }
-
-    public void addListener(WeatherRequestHandler listener) {
-        mListeners.add(listener);
     }
 
     private WeatherDataItem getCurData() {
         MyLog.d(this.getClass(), "getCurData  ");
         WeatherDataItem item = null;
         if (mEngine != null) {
-            item = mEngine.getCurWeatherData();
+            item = mEngine.getCurWeatherData(mContext);
         }
         return item;
     }
@@ -106,32 +91,36 @@ public class WeatherRequestTask extends AsyncTask {
     private ArrayList<WeatherDataItem> getForeastData() {
         ArrayList<WeatherDataItem> list = null;
         if (mEngine != null) {
-            list = mEngine.getForeastWeatherData();
+            list = mEngine.getForeastWeatherData(mContext);
         }
         return list;
     }
 
-    private void onSuccessRequset(String str) {
-        MyLog.d(this.getClass(), "    onSuccessRequset = " + str);
-        if (null == mListeners) {
+    public void setListener(WeatherRequestHandler listener) {
+        mListener = listener;
+    }
+
+    private void onSuccessRequset(WeatherDataItem data) {
+        MyLog.d(this.getClass(), "onSuccessRequset = " + data.toString());
+        if (null == mListener) {
             return;
         }
+        mListener.requestSuccessful(data);
+    }
 
-        for (WeatherRequestHandler listener : mListeners) {
-            MyLog.d(this.getClass(), "    mListeners requestSuccessful ");
-            listener.requestSuccessful(str);
+    private void onSuccessRequset(ArrayList<WeatherDataItem> list) {
+        MyLog.d(this.getClass(), "onSuccessRequset = " + list);
+        if (null == mListener) {
+            return;
         }
+        mListener.requestSuccessful(list);
     }
 
     private void onFailRequset() {
-        MyLog.d(this.getClass(), "    onFailRequset = ");
-        if (null == mListeners) {
+        MyLog.d(this.getClass(), "onFailRequset = ");
+        if (null == mListener) {
             return;
         }
-
-        for (WeatherRequestHandler listener : mListeners) {
-            MyLog.d(this.getClass(), "    mListeners requestFailed ");
-            listener.requestFailed();
-        }
+        mListener.requestFailed();
     }
 }

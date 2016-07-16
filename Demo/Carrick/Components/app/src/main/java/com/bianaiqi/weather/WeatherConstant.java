@@ -18,4 +18,9 @@ public class WeatherConstant {
 
     public static final int WEATHER_TYPE_COUNT = 7;
     public static final int DEFAULT_WEATHTER_TYPE = SUN_DAY;
+
+    public static final int QUERY_REQUEST_ITEM = 1;
+    public static final int QUERY_REQUEST_LIST = 2;
+    public static final int QUERY_REQUEST_NONE = 3;
+    public static final int DEFAULT_QUERY_REQUEST = QUERY_REQUEST_ITEM;
 }

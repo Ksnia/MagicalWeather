@@ -17,7 +17,6 @@ public class MyLog {
     public static void d(Class<?> clazz, String msg) {
         if (DEBUG) {
             Log.d(clazz.getSimpleName(), PREFIX + msg + "");
-            //Log.d("Carrick", msg + "");
         }
     }
 
@@ -25,21 +24,18 @@ public class MyLog {
     public static void e(Class<?> clazz, String msg) {
         if (DEBUG) {
             Log.e(clazz.getSimpleName(), PREFIX + msg + "");
-            //Log.e("Carrick", msg + "");
         }
     }
 
     public static void i(Class<?> clazz, String msg) {
         if (DEBUG) {
             Log.i(clazz.getSimpleName(), PREFIX + msg + "");
-            //Log.i("Carrick", msg + "");
         }
     }
 
     public static void w(Class<?> clazz, String msg) {
         if (DEBUG) {
             Log.w(clazz.getSimpleName(), PREFIX + msg + "");
-            //Log.w("Carrick", msg + "");
         }
     }
 }

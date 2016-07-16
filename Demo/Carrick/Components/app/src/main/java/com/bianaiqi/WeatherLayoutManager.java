@@ -12,54 +12,126 @@ import com.bianaiqi.ui.SunDayLayout;
 import com.bianaiqi.ui.SunNightLayout;
 import com.bianaiqi.ui.ThunderStormLayout;
 import com.bianaiqi.ui.WeatherLayout;
+import com.bianaiqi.util.MyLog;
 import com.bianaiqi.weather.WeatherConstant;
+import com.bianaiqi.weather.data.local.WeatherDataItem;
 
 /**
  * Created by Carrick on 2016/7/13.
  */
-public class WeatherLayoutManager implements WeatherManager.WeatherUpdateListner {
+public class WeatherLayoutManager implements WeatherManager.WeatherLayoutUpdateListener {
 
     private WeatherLayout mWeatherLayout;
     private ViewGroup mParent;
     private Context mContext;
-    public int mType;
+    public int mLayoutType;
     public static WeatherLayoutManager sWLMgr;
 
     public WeatherLayoutManager() {
 
     }
 
-    public static WeatherLayoutManager getInstance(){
-        if(null == sWLMgr){
+    public static WeatherLayoutManager getInstance() {
+        if (null == sWLMgr) {
             sWLMgr = new WeatherLayoutManager();
         }
         return sWLMgr;
     }
 
-    public void init(Context context, ViewGroup parent){
+    public void init(Context context, ViewGroup parent) {
         mContext = context;
         mParent = parent;
+        setWeatherLayoutType(WeatherConstant.DEFAULT_WEATHTER_TYPE);
+        loadWeatherLayout();
     }
 
     @Override
-    public void onDataChanged(int type) {
-        setWeatherType(type);
+    public void onWeatherLayoutUpdate(WeatherDataItem data) {
+        MyLog.d(this.getClass(), "data = " + data);
+        if (null == data) {
+            return;
+        }
 
+        int newLayoutType = getLayoutTypeByData(data);
+        setWeatherLayoutType(newLayoutType);
+        loadWeatherLayout();
+    }
+
+    public boolean isNight() {
+        boolean night = false;
+        return night;
+    }
+
+    private void loadWeatherLayout(){
         // 此处parent要替换为系统的某一个view
-        if(null != mWeatherLayout){
+        if (null != mWeatherLayout) {
             mParent.removeView(mWeatherLayout);
             mWeatherLayout = null;
         }
 
-        if(null != mParent){
-            mWeatherLayout = getWeatherViewLayout(type);
+        if (null != mParent) {
+            mWeatherLayout = getWeatherViewLayout(getWeatherLayoutType());
             mParent.addView(mWeatherLayout);
         }
     }
 
-    private WeatherLayout getWeatherViewLayout(int type){
+    public int getWeatherLayoutType() {
+        return mLayoutType;
+    }
+
+    private void setWeatherLayoutType(int type) {
+        mLayoutType = type;
+    }
+
+    private int getLayoutTypeByData(WeatherDataItem data) {
+        int type;
+        switch (data.getWeatherId()) {
+            case Sunny:
+                if (isNight()) {
+                    type = WeatherConstant.SUN_NIGHT;
+                } else {
+                    type = WeatherConstant.SUN_DAY;
+                }
+                break;
+
+            case Cloud:
+                type = WeatherConstant.CLOUD;
+                break;
+
+            case Foggy:
+                type = WeatherConstant.FOG;
+                break;
+
+            case LittleRain:
+                type = WeatherConstant.RAIN_LIGHT;
+                break;
+
+            case HeavyRain:
+                type = WeatherConstant.RAIN_HEAVY;
+                break;
+
+            case Thundershowers:
+                type = WeatherConstant.THUNDERSTORM;
+                break;
+
+            case LittleSnow:
+            case HeavySnow:
+            case MixedRainAndSnow:
+                type = WeatherConstant.SNOW_LIGHT;
+                break;
+
+            case Others:
+            default:
+                type = WeatherConstant.DEFAULT_WEATHTER_TYPE;
+                break;
+        }
+        return type;
+    }
+
+    private WeatherLayout getWeatherViewLayout(int type) {
         WeatherLayout ly;
-        switch (type){
+        MyLog.d(this.getClass(), "getWeatherViewLayout type = " + type);
+        switch (type) {
             case WeatherConstant.SUN_NIGHT:
                 ly = new SunNightLayout(mContext);
                 break;
@@ -93,13 +165,5 @@ public class WeatherLayoutManager implements WeatherManager.WeatherUpdateListner
                 break;
         }
         return ly;
-    }
-
-    private void setWeatherType(int type){
-        mType = type;
-    }
-
-    public int getWeatherType(){
-        return mType;
     }
 }

@@ -1,5 +1,9 @@
 package com.bianaiqi.weather.engine;
 
+import android.content.Context;
+
+import com.bianaiqi.util.MyLog;
+import com.bianaiqi.weather.WeatherUtils;
 import com.bianaiqi.weather.data.net.DownloadInformation;
 import com.bianaiqi.weather.data.net.bean.baidu.BaiduOriginData;
 import com.bianaiqi.weather.data.local.WeatherCity;
@@ -8,7 +12,6 @@ import com.bianaiqi.weather.data.net.bean.baidu.BaiduWeatherDataItem;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Carrick on 2016/7/12.
@@ -32,28 +35,33 @@ public class BaiduEngine extends Engine {
         super();
     }
 
-    @Override
-    public WeatherDataItem getCurWeatherData() {
-        return getWeatherDataItem(city);
+    public BaiduEngine(WeatherCity city) {
+        super(city);
     }
 
     @Override
-    public ArrayList<WeatherDataItem> getForeastWeatherData() {
-        return getWeatherDataList(city);
+    public WeatherDataItem getCurWeatherData(Context context) {
+        MyLog.d(this.getClass(), "city = " + city);
+        return getWeatherDataItem(context, city);
     }
 
     @Override
-    protected String processCurUrl(WeatherCity city) {
-        String finalUrl = String.format(URL_BAIDU_CITY_WEATHER_QUERY,city.getName());
+    public ArrayList<WeatherDataItem> getForeastWeatherData(Context context) {
+        return getWeatherDataList(context, city);
+    }
+
+    @Override
+    protected String processCurUrl(Context context, WeatherCity city) {
+        String finalUrl = String.format(URL_BAIDU_CITY_WEATHER_QUERY, city.getName());
         return finalUrl;
     }
 
     @Override
     protected WeatherDataItem processCurInfo(DownloadInformation info) {
         WeatherDataItem item = new WeatherDataItem();
-        BaiduOriginData ret = com.bianaiqi.weather.WeatherUtils.getGson().fromJson(info.toString(), BaiduOriginData.class);
-        if(ret != null && ret.getResults()!= null && ret.getResults().size()>0){
-            BaiduWeatherDataItem weather_data =  ret.getResults().get(0).getWeather_data().get(0);
+        BaiduOriginData ret = WeatherUtils.getGson().fromJson(info.toString(), BaiduOriginData.class);
+        if (ret != null && ret.getResults() != null && ret.getResults().size() > 0) {
+            BaiduWeatherDataItem weather_data = ret.getResults().get(0).getWeather_data().get(0);
             item.setWeather(weather_data.getWeather());
             item.setCurTemp(Integer.valueOf(weather_data.getTemperature()));
             item.setHightTemp(0);//24 ~ 19℃
@@ -71,45 +79,45 @@ public class BaiduEngine extends Engine {
     }
 
     @Override
-    protected String processForeastUrl(WeatherCity city) {
-        return processCurUrl(city);
+    protected String processForeastUrl(Context context, WeatherCity city) {
+        return processCurUrl(context, city);
     }
 
 
-    private int getCurTemp(String t){
+    private int getCurTemp(String t) {
         int i = 0;
         return i;
     }
 
-    private int getLowTemp (String t ){
+    private int getLowTemp(String t) {
         int i = 0;
         return i;
     }
 
-    private int getHighTemp (String t) {
+    private int getHighTemp(String t) {
         int i = 0;
         return i;
     }
 
-    private WeatherDataItem.WeatherCode getFinalCode(String weather){
+    private WeatherDataItem.WeatherCode getFinalCode(String weather) {
         WeatherDataItem.WeatherCode code = WeatherDataItem.WeatherCode.Others;
-        if(weather.contains(Sunny)){
+        if (weather.contains(Sunny)) {
             code = WeatherDataItem.WeatherCode.Sunny;
-        }else if(weather.contains(Cloud)){
+        } else if (weather.contains(Cloud)) {
             code = WeatherDataItem.WeatherCode.Cloud;
-        }else if(weather.contains(Foggy)){
+        } else if (weather.contains(Foggy)) {
             code = WeatherDataItem.WeatherCode.Foggy;
-        }else if(weather.contains(LittleRain)){
+        } else if (weather.contains(LittleRain)) {
             code = WeatherDataItem.WeatherCode.LittleRain;
-        }else if(weather.contains(HeavyRain)){
+        } else if (weather.contains(HeavyRain)) {
             code = WeatherDataItem.WeatherCode.HeavyRain;
-        }else if(weather.contains(Thundershowers)){
+        } else if (weather.contains(Thundershowers)) {
             code = WeatherDataItem.WeatherCode.Thundershowers;
-        }else if(weather.contains(LittleSnow)){
+        } else if (weather.contains(LittleSnow)) {
             code = WeatherDataItem.WeatherCode.LittleSnow;
-        }else if(weather.contains(HeavySnow)){
+        } else if (weather.contains(HeavySnow)) {
             code = WeatherDataItem.WeatherCode.HeavySnow;
-        }else if(weather.contains(MixedRainAndSnow)){
+        } else if (weather.contains(MixedRainAndSnow)) {
             code = WeatherDataItem.WeatherCode.MixedRainAndSnow;
         }
 

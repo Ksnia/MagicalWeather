@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_city">shanghai</string>
+
+    <string-array name="test_default_city" translatable="false">
+        <item> </item>
+        <item>shanghai</item>
+        <item>beijing</item>
+        <item>chongqing</item>
+        <item>guangzhou</item>
+        <item>nanjing</item>
+        <item>wuhan</item>
+        <item>taiyuan</item>
+        <item>shenyang</item>
+        <item>changchun</item>
+        <item>changsha</item>
+        <item>shenzhen</item>
+        <item>xiamen</item>
+        <item>nanchang</item>
+        <item>jinan</item>
+    </string-array>
+</resources>

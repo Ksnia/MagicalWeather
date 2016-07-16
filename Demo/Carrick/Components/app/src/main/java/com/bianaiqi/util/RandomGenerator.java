@@ -21,17 +21,4 @@ public class RandomGenerator {
     public int getRandom(int upper){
         return RANDOM.nextInt(upper);
     }
-
-
-    /**
-     * test api
-     */
-    public static int i;
-    public static void generatorWeatherType(){
-        i = (int) (Math.random() * 7);
-    }
-
-    public static int getWeatherType(){
-        return i;
-    }
 }

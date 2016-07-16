@@ -40,7 +40,7 @@ public abstract class WeatherLayout extends FrameLayout {
             return;
         }
 
-        Drawable drawable = getWeatherIconDrawable(WeatherLayoutManager.getInstance().getWeatherType());
+        Drawable drawable = getWeatherIconDrawable(WeatherLayoutManager.getInstance().getWeatherLayoutType());
         if (null != drawable) {
             mWeatherIcon.setBackground(drawable);
         }
