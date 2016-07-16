@@ -7,22 +7,14 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.bianaiqi.WeatherLayoutManager;
 import com.bianaiqi.components.R;
-import com.bianaiqi.util.RandomGenerator;
+import com.bianaiqi.weather.WeatherConstant;
 
 /**
  * Created by Carrick on 2016/7/12.
  */
 public abstract class WeatherLayout extends FrameLayout {
-
-    private final int SUN_DAY = 0;
-    private final int SUN_NIGHT = 1;
-    private final int CLOUD = 2;
-    private final int RAIN = 3;
-    private final int THUNDERSTORM = 4;
-    private final int SNOW = 5;
-    private final int FOG = 6;
-    private final int WEATHER_TYPE_COUNT = 7;
 
     public ImageView mWeatherIcon;
     public boolean mIsPlaying;
@@ -43,13 +35,13 @@ public abstract class WeatherLayout extends FrameLayout {
         mContext = context;
     }
 
-    public void showWeatherIcon(){
-        if(null == mWeatherIcon){
+    public void showWeatherIcon() {
+        if (null == mWeatherIcon) {
             return;
         }
 
-        Drawable drawable = getWeatherIconDrawable(RandomGenerator.getWeatherType());
-        if(null != drawable){
+        Drawable drawable = getWeatherIconDrawable(WeatherLayoutManager.getInstance().getWeatherType());
+        if (null != drawable) {
             mWeatherIcon.setBackground(drawable);
         }
 
@@ -61,35 +53,47 @@ public abstract class WeatherLayout extends FrameLayout {
         mWeatherIcon.setLayoutParams(para);
     }
 
-    private Drawable getWeatherIconDrawable(int type){
+    private Drawable getWeatherIconDrawable(int type) {
         Resources mRes = mContext.getResources();
         Drawable drawable;
-        switch (type){
-            case SUN_NIGHT:
+        switch (type) {
+            case WeatherConstant.SUN_NIGHT:
                 drawable = mRes.getDrawable(R.drawable.icon_moon);
                 break;
 
-            case CLOUD:
+            case WeatherConstant.CLOUD:
                 drawable = mRes.getDrawable(R.drawable.icon_cloud);
                 break;
 
-            case RAIN:
+            case WeatherConstant.RAIN_LIGHT:
                 drawable = mRes.getDrawable(R.drawable.icon_rain_light);
                 break;
 
-            case THUNDERSTORM:
+            case WeatherConstant.RAIN_HEAVY:
+                drawable = mRes.getDrawable(R.drawable.icon_rain_heavy);
+                break;
+
+            case WeatherConstant.THUNDERSTORM:
                 drawable = mRes.getDrawable(R.drawable.icon_thunderstorm);
                 break;
 
-            case FOG:
+            case WeatherConstant.FOG:
                 drawable = mRes.getDrawable(R.drawable.icon_fog);
                 break;
 
-            case SNOW:
+            case WeatherConstant.SNOW_LIGHT:
                 drawable = mRes.getDrawable(R.drawable.icon_snow_light);
                 break;
 
-            case SUN_DAY:
+            case WeatherConstant.SNOW_HEAVY:
+                drawable = mRes.getDrawable(R.drawable.icon_snow_heavy);
+                break;
+
+            case WeatherConstant.SLEET:
+                drawable = mRes.getDrawable(R.drawable.icon_sleet);
+                break;
+
+            case WeatherConstant.SUN_DAY:
             default:
                 drawable = mRes.getDrawable(R.drawable.icon_sun);
                 break;
@@ -97,13 +101,13 @@ public abstract class WeatherLayout extends FrameLayout {
         return drawable;
     }
 
-    public boolean getAnimationState(){
+    public boolean getAnimationState() {
         return mIsPlaying;
     }
 
-    public void setAnimationState(boolean state){
+    public void setAnimationState(boolean state) {
         mIsPlaying = state;
-    };
+    }
 
     public abstract void startAnimation();
 
