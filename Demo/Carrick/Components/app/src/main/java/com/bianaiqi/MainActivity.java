@@ -1,4 +1,4 @@
-package com.bianaiqi.components;
+package com.bianaiqi;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,9 +7,10 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.bianaiqi.components.R;
+import com.bianaiqi.manager.WeatherLayoutManager;
+import com.bianaiqi.manager.WeatherManager;
 import com.bianaiqi.util.MyLog;
-import com.bianaiqi.WeatherLayoutManager;
-import com.bianaiqi.WeatherManager;
 import com.bianaiqi.weather.WeatherUtils;
 import com.bianaiqi.weather.data.local.WeatherDataItem;
 
@@ -58,7 +59,7 @@ public class MainActivity extends Activity implements WeatherManager.WeatherData
                 MyLog.d(MainActivity.class, "mWeatherView  Click");
                 mWeatherMgr.requestWeatherData(getApplicationContext(),
                         WeatherUtils.getDefaultEngineType(),
-                        WeatherUtils.getDefaultCity(getApplicationContext()),
+                        WeatherUtils.getTestCity(getApplicationContext()),
                         WeatherUtils.getDefaultRequestType());
             }
         });

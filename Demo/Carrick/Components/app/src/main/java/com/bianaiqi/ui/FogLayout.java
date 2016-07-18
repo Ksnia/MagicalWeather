@@ -16,9 +16,23 @@ import com.bianaiqi.components.R;
  */
 public class FogLayout extends WeatherLayout {
 
-    private final int FOG_DISAPPEAR_DURATION = 2000;
-    private final int FOG_WAITTING_DURATION = 1000;
-    private final int FOG_REAPPEAR_DURATION = 200;
+    private final int FOG_WAITTING_DURATION = 2000;
+
+    private final int FRONT_DISAPPEAR_DURATION = 2500;
+    private final int FRONT_INDISTINCT_FADE_IN_DELAY_RUTATION = 1500;
+    private final int FRONT_INDISTINCT_FADE_IN_DURATION = 2000;
+    private final int FRONT_INDISTINCT_FADE_OUT_DELAY_RUTATION = 2000;
+    private final int FRONT_INDISTINCT_FADE_OUT_DURATION = 2000;
+    private final int FRONT_APPEAR_DELAY_RUTATION = 2000;
+    private final int FRONT_APPEAR_DURATION = 2500;
+
+    private final int BACK_DISAPPEAR_DURATION = 2500;
+    private final int BACK_INDISTINCT_FADE_IN_DELAY_RUTATION = 1500;
+    private final int BACK_INDISTINCT_FADE_IN_DURATION = 2000;
+    private final int BACK_INDISTINCT_FADE_OUT_DELAY_RUTATION = 2000;
+    private final int BACK_INDISTINCT_FADE_OUT_DURATION = 2000;
+    private final int BACK_APPEAR_DELAY_RUTATION = 2000;
+    private final int BACK_APPEAR_DURATION = 2000;
 
     private AnimatorSet mFogAnimator;
     private ImageView mMountainBack;
@@ -69,14 +83,14 @@ public class FogLayout extends WeatherLayout {
 
     @Override
     public void startAnimation() {
-        if(null != mFogAnimator && !getAnimationState()){
+        if (null != mFogAnimator && !getAnimationState()) {
             mFogAnimator.start();
         }
     }
 
     @Override
     public void stopAnimation() {
-        if(null != mFogAnimator){
+        if (null != mFogAnimator) {
             mFogAnimator.cancel();
         }
     }
@@ -97,68 +111,75 @@ public class FogLayout extends WeatherLayout {
         mMountainBack = (ImageView) findViewById(R.id.fog_mountain_back);
 
         mFogAnimator = createFogAnimator();
+        startAnimation();
     }
 
-    private AnimatorSet createFogAnimator(){
-        Animator anim_mountain2 = createFog2Animator(mMountainFront, 0.2f,0.5f);
-        Animator anim_mountain1 = createFog1Animator(mMountainBack, 0.3f);
+    private AnimatorSet createFogAnimator() {
+        AnimatorSet anim_mountainBack = createBackMountainAnimator(0.2f, 0.6f);
+        AnimatorSet anim_mountainFront = createFrontMountainAnimator(0.3f, 0.7f);
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.addListener(listener);
-        animatorSet.playTogether(anim_mountain1, anim_mountain2);
+        animatorSet.playTogether(anim_mountainBack, anim_mountainFront);
         animatorSet.setStartDelay(FOG_WAITTING_DURATION);
         return animatorSet;
     }
 
-    private Animator createFog1Animator(View v, float alpha) {
+    private AnimatorSet createBackMountainAnimator(float alpha1, float alpha2) {
         AnimatorSet animator = new AnimatorSet();
-        ObjectAnimator anim_disappear = createAlphaAnimator(v,alpha);
-        anim_disappear.setDuration(FOG_DISAPPEAR_DURATION);
-        ObjectAnimator anim_reappear = createAlphaAnimator(v,1f);
-        anim_reappear.setStartDelay(FOG_DISAPPEAR_DURATION);
-        anim_reappear.setDuration(FOG_DISAPPEAR_DURATION);
-        animator.play(anim_reappear).after(anim_disappear);
-        return animator;
-    }
+        ObjectAnimator anim_disappear = createAlphaAnimator(mMountainBack, alpha1);
+        anim_disappear.setDuration(BACK_DISAPPEAR_DURATION);
 
-    /**
-     *
-     * @param v
-     * @param alpha1
-     * @return
-     * 0-2       消失 0.8
-     * 2-2.2     出现 0.8-0.5
-     * 2.2-2.4   消失 0.5-0.8
-     * 2.4-2.6   出现 0.8-0.5
-     * 2.6-2.8   消失 0.5-0.8
-     * 2.8-5     出现 1
-     */
-    private Animator createFog2Animator(View v, float alpha1, float alpha2) {
-        AnimatorSet animator = new AnimatorSet();
-        ObjectAnimator anim_disappear = createAlphaAnimator(v,alpha1);
-        anim_disappear.setDuration(FOG_DISAPPEAR_DURATION);
+        ObjectAnimator anim_indistinct_fadein = createAlphaAnimator(mMountainBack, alpha1, alpha2);
+        anim_indistinct_fadein.setDuration(BACK_INDISTINCT_FADE_IN_DURATION);
+        anim_indistinct_fadein.setStartDelay(BACK_INDISTINCT_FADE_IN_DELAY_RUTATION);
 
-        ObjectAnimator anim1 = createAlphaAnimator(v,alpha1,alpha2);
-        anim_disappear.setDuration(FOG_DISAPPEAR_DURATION);
+        ObjectAnimator anim_indistinct_fadeout = createAlphaAnimator(mMountainBack, alpha2, alpha1);
+        anim_indistinct_fadeout.setDuration(BACK_INDISTINCT_FADE_OUT_DURATION);
+        anim_indistinct_fadeout.setStartDelay(BACK_INDISTINCT_FADE_OUT_DELAY_RUTATION);
 
+        ObjectAnimator anim_reappear = createAlphaAnimator(mMountainBack, 1f);
+        anim_reappear.setDuration(BACK_APPEAR_DURATION);
+        anim_indistinct_fadeout.setStartDelay(BACK_APPEAR_DELAY_RUTATION);
 
-        ObjectAnimator anim2 = createAlphaAnimator(v,alpha2,alpha1);
-        anim_disappear.setDuration(FOG_DISAPPEAR_DURATION);
-
-        ObjectAnimator anim_reappear = createAlphaAnimator(v,1f);
-        anim_reappear.setDuration(FOG_DISAPPEAR_DURATION);
         animator.playSequentially(anim_disappear,
-                anim1, anim2,
+                anim_indistinct_fadein,
+                anim_indistinct_fadeout,
                 anim_reappear);
 
         return animator;
     }
 
-    private ObjectAnimator createAlphaAnimator(View v, float alpha){
+    private AnimatorSet createFrontMountainAnimator(float alpha1, float alpha2) {
+        AnimatorSet animator = new AnimatorSet();
+        ObjectAnimator anim_disappear = createAlphaAnimator(mMountainFront, alpha1);
+        anim_disappear.setDuration(FRONT_DISAPPEAR_DURATION);
+
+        ObjectAnimator anim_indistinct_fadein = createAlphaAnimator(mMountainFront, alpha1, alpha2);
+        anim_indistinct_fadein.setDuration(FRONT_INDISTINCT_FADE_IN_DURATION);
+        anim_indistinct_fadein.setStartDelay(FRONT_INDISTINCT_FADE_IN_DELAY_RUTATION);
+
+        ObjectAnimator anim_indistinct_fadeout = createAlphaAnimator(mMountainFront, alpha2, alpha1);
+        anim_indistinct_fadeout.setDuration(FRONT_INDISTINCT_FADE_OUT_DURATION);
+        anim_indistinct_fadeout.setStartDelay(FRONT_INDISTINCT_FADE_OUT_DELAY_RUTATION);
+
+        ObjectAnimator anim_reappear = createAlphaAnimator(mMountainFront, 1f);
+        anim_reappear.setDuration(FRONT_APPEAR_DURATION);
+        anim_indistinct_fadeout.setStartDelay(FRONT_APPEAR_DELAY_RUTATION);
+
+        animator.playSequentially(anim_disappear,
+                anim_indistinct_fadein,
+                anim_indistinct_fadeout,
+                anim_reappear);
+
+        return animator;
+    }
+
+    private ObjectAnimator createAlphaAnimator(View v, float alpha) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(v, "alpha", alpha);
         return animator;
     }
 
-    private ObjectAnimator createAlphaAnimator(View v, float alpha1, float alpha2){
+    private ObjectAnimator createAlphaAnimator(View v, float alpha1, float alpha2) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(v, "alpha", alpha1, alpha2);
         return animator;
     }

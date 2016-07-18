@@ -1,4 +1,4 @@
-package com.bianaiqi;
+package com.bianaiqi.weather;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import java.util.ArrayList;
 
 import com.bianaiqi.util.MyLog;
-import com.bianaiqi.weather.WeatherConstant;
 import com.bianaiqi.weather.data.local.WeatherCity;
 import com.bianaiqi.weather.data.local.WeatherDataItem;
 import com.bianaiqi.weather.engine.Engine;
@@ -20,17 +19,19 @@ public class WeatherRequestTask extends AsyncTask {
     private Engine mEngine;
     private int mRequestType;
     private WeatherRequestHandler mListener;
-	
+
     public interface WeatherRequestHandler {
         void requestSuccessful(WeatherDataItem data);
+
         void requestSuccessful(ArrayList<WeatherDataItem> list);
+
         void requestFailed();
     }
 
     public WeatherRequestTask(Context context, EngineFactory.EngineType type, WeatherCity city, int requestType) {
         this.mContext = context;
         this.mRequestType = requestType;
-        mEngine = EngineFactory.createEngine(city,type);
+        mEngine = EngineFactory.createEngine(city, type);
     }
 
     @Override

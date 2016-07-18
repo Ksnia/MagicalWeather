@@ -13,8 +13,8 @@
         android:id="@+id/cloud_img1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/cloud1_layout_margin_top"
+        android:layout_marginLeft="@dimen/cloud1_layout_margin_left"
         android:src="@drawable/cloud1"/>
 
     <ImageView
@@ -28,7 +28,7 @@
         android:id="@+id/cloud_img3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
         android:layout_marginTop="@dimen/cloud3_layout_margin_top"
         android:src="@drawable/cloud3"/>
 

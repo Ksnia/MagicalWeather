@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.bianaiqi.WeatherLayoutManager;
+import com.bianaiqi.manager.WeatherLayoutManager;
 import com.bianaiqi.components.R;
 import com.bianaiqi.weather.WeatherConstant;
 

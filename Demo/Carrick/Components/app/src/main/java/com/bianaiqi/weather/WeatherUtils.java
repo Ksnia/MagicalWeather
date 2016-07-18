@@ -41,14 +41,7 @@ public class WeatherUtils {
     }
 
     public static WeatherCity getDefaultCity(Context context) {
-        String cityName = "";
-        if (MyLog.DEBUG) {
-            String[] cities = context.getResources().getStringArray(R.array.test_default_city);
-            RandomGenerator rg = new RandomGenerator();
-            cityName = cities[rg.getRandom(cities.length)];
-        } else {
-            cityName = context.getResources().getString(R.string.default_city);
-        }
+        String cityName = context.getResources().getString(R.string.default_city);
         String cityDomain = "";
         WeatherCity city = new WeatherCity(cityName, cityDomain);
         return city;
@@ -117,4 +110,68 @@ public class WeatherUtils {
         public void onStatusChanged(String provider, int status, Bundle extras) {
         }
     };
+
+    public static WeatherCity getTestCity(Context context) {
+        String cityName = "";
+        String[] cities = context.getResources().getStringArray(R.array.test_default_city);
+        RandomGenerator rg = new RandomGenerator();
+        cityName = cities[rg.getRandom(cities.length)];
+        String cityDomain = "";
+        WeatherCity city = new WeatherCity(cityName, cityDomain);
+        return city;
+    }
+
+    public static int getTestWeatherLayoutType() {
+        int type = WeatherConstant.DEFAULT_WEATHTER_TYPE;
+        RandomGenerator rg = new RandomGenerator();
+        int i = rg.getRandom(WeatherConstant.WEATHER_TYPE_COUNT);
+
+        switch (i) {
+            case 0:
+                type = WeatherConstant.SUN_DAY;
+                break;
+
+            case 1:
+                type = WeatherConstant.SUN_NIGHT;
+                break;
+
+            case 2:
+                type = WeatherConstant.CLOUD;
+                break;
+
+            case 3:
+                type = WeatherConstant.RAIN_LIGHT;
+                break;
+
+            case 4:
+                type = WeatherConstant.RAIN_HEAVY;
+                break;
+
+            case 5:
+                type = WeatherConstant.THUNDERSTORM;
+                break;
+
+            case 6:
+                type = WeatherConstant.SNOW_LIGHT;
+                break;
+
+
+            case 7:
+                type = WeatherConstant.SNOW_HEAVY;
+                break;
+
+            case 8:
+                type = WeatherConstant.SLEET;
+                break;
+
+            case 9:
+                type = WeatherConstant.FOG;
+                break;
+
+            default:
+                type = WeatherConstant.DEFAULT_WEATHTER_TYPE;
+                break;
+        }
+        return type;
+    }
 }

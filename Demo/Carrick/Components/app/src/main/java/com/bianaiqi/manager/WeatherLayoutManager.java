@@ -1,9 +1,8 @@
-package com.bianaiqi;
+package com.bianaiqi.manager;
 
 import android.content.Context;
 import android.view.ViewGroup;
 
-import com.bianaiqi.WeatherManager;
 import com.bianaiqi.ui.CloudLayout;
 import com.bianaiqi.ui.FogLayout;
 import com.bianaiqi.ui.RainLayout;
@@ -14,6 +13,7 @@ import com.bianaiqi.ui.ThunderStormLayout;
 import com.bianaiqi.ui.WeatherLayout;
 import com.bianaiqi.util.MyLog;
 import com.bianaiqi.weather.WeatherConstant;
+import com.bianaiqi.weather.WeatherUtils;
 import com.bianaiqi.weather.data.local.WeatherDataItem;
 
 /**
@@ -70,7 +70,8 @@ public class WeatherLayoutManager implements WeatherManager.WeatherLayoutUpdateL
         }
 
         if (null != mParent) {
-            mWeatherLayout = getWeatherViewLayout(getWeatherLayoutType());
+            mWeatherLayout = getWeatherViewLayout(WeatherUtils.getTestWeatherLayoutType());
+            //mWeatherLayout = getWeatherViewLayout(getWeatherLayoutType());
             mParent.addView(mWeatherLayout);
         }
     }

@@ -112,8 +112,8 @@ public class CloudLayout extends WeatherLayout {
 
     public AnimatorSet createCloudAnimator() {
         Animator anim_cloud1 = createCloudAnimator(mCloud1, -15f);
-        Animator anim_cloud2 = createCloudAnimator(mCloud2, -10f);
-        Animator anim_cloud3 = createCloudAnimator(mCloud3, 12f);
+        Animator anim_cloud2 = createCloudAnimator(mCloud2, -8f);
+        Animator anim_cloud3 = createCloudAnimator(mCloud3, 10f);
         Animator anim_cloud4 = createCloudAnimator(mCloud4, 12f);
         Animator anim_inverted_cloud = createCloudAnimator(mInvertedcloud, -12f);
 

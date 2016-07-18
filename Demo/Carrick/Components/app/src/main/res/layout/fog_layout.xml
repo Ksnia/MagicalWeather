@@ -10,17 +10,17 @@
         android:layout_height="wrap_content"/>
 
     <ImageView
-        android:id="@+id/fog_mountain_front"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="@dimen/mountainfront_layout_margin_bottom"
-        android:src="@drawable/fog_mountain2" />
-
-    <ImageView
         android:id="@+id/fog_mountain_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mountainback_layout_margin_bottom"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/mountainfront_layout_margin_top"
+        android:src="@drawable/fog_mountain2" />
+
+    <ImageView
+        android:id="@+id/fog_mountain_front"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mountainback_layout_margin_top"
         android:src="@drawable/fog_mountain1" />
 </FrameLayout>

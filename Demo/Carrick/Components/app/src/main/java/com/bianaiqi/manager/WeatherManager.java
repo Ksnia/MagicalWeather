@@ -1,17 +1,14 @@
-package com.bianaiqi;
+package com.bianaiqi.manager;
 
 import com.bianaiqi.util.MyLog;
+import com.bianaiqi.weather.WeatherRequestTask;
 import com.bianaiqi.weather.data.local.WeatherCity;
 import com.bianaiqi.weather.data.local.WeatherDataItem;
 import com.bianaiqi.weather.engine.EngineFactory;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Carrick on 2016/7/12.

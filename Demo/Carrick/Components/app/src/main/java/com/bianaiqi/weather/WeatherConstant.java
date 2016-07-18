@@ -16,7 +16,7 @@ public class WeatherConstant {
     public static final int SLEET = 8;
     public static final int FOG = 9;
 
-    public static final int WEATHER_TYPE_COUNT = 7;
+    public static final int WEATHER_TYPE_COUNT = 10;
     public static final int DEFAULT_WEATHTER_TYPE = SUN_DAY;
 
     public static final int QUERY_REQUEST_ITEM = 1;

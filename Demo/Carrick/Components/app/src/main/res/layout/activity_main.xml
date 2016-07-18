@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bianaiqi.components.MainActivity">
+    tools:context="com.bianaiqi.MainActivity">
 
     <FrameLayout
         android:id="@+id/weather_bg"

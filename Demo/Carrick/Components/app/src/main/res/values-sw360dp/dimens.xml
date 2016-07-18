@@ -19,12 +19,14 @@
 
     <!-- CloudLayout -->
     <dimen name="cloud1_layout_margin_top">385dp</dimen>
-    <dimen name="cloud2_layout_margin_top">428dp</dimen>
-    <dimen name="cloud3_layout_margin_top">408dp</dimen>
-    <dimen name="cloud4_layout_margin_top">390dp</dimen>
-    <dimen name="cloud4_layout_margin_left">60dp</dimen>
-    <dimen name="inverted_cloud_layout_margin_top">464dp</dimen>
-    <dimen name="inverted_cloud_layout_margin_left">85dp</dimen>
+    <dimen name="cloud1_layout_margin_left">30dp</dimen>
+
+    <dimen name="cloud2_layout_margin_top">420dp</dimen>
+    <dimen name="cloud3_layout_margin_top">405dp</dimen>
+    <dimen name="cloud4_layout_margin_top">378dp</dimen>
+    <dimen name="cloud4_layout_margin_left">50dp</dimen>
+    <dimen name="inverted_cloud_layout_margin_top">454dp</dimen>
+    <dimen name="inverted_cloud_layout_margin_left">76dp</dimen>
     <!-- CloudLayout -->
 
     <!-- SunDayLayout -->
@@ -44,7 +46,7 @@
     <!-- SunNightLayout -->
 
     <!-- FogLayout -->
-    <dimen name="mountainfront_layout_margin_bottom">364dp</dimen>
-    <dimen name="mountainback_layout_margin_bottom">402dp</dimen>
+    <dimen name="mountainfront_layout_margin_top">358dp</dimen>
+    <dimen name="mountainback_layout_margin_top">395dp</dimen>
     <!-- FogLayout -->
 </resources>
