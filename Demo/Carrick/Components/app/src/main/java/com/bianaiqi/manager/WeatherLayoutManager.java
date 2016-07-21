@@ -53,6 +53,13 @@ public class WeatherLayoutManager implements WeatherManager.WeatherLayoutUpdateL
         }
 
         int newLayoutType = getLayoutTypeByData(data);
+        if (getWeatherLayoutType() == newLayoutType) {
+            if (mWeatherLayout.getAnimationState() == true) {
+                mWeatherLayout.stopAnimation();
+            }
+            mWeatherLayout.startAnimation();
+            return;
+        }
         setWeatherLayoutType(newLayoutType);
         loadWeatherLayout();
     }
@@ -62,7 +69,7 @@ public class WeatherLayoutManager implements WeatherManager.WeatherLayoutUpdateL
         return night;
     }
 
-    private void loadWeatherLayout(){
+    private void loadWeatherLayout() {
         // 此处parent要替换为系统的某一个view
         if (null != mWeatherLayout) {
             mParent.removeView(mWeatherLayout);
@@ -70,8 +77,8 @@ public class WeatherLayoutManager implements WeatherManager.WeatherLayoutUpdateL
         }
 
         if (null != mParent) {
-            mWeatherLayout = getWeatherViewLayout(WeatherUtils.getTestWeatherLayoutType());
-            //mWeatherLayout = getWeatherViewLayout(getWeatherLayoutType());
+            //mWeatherLayout = getWeatherViewLayout(WeatherUtils.getTestWeatherLayoutType());
+            mWeatherLayout = getWeatherViewLayout(getWeatherLayoutType());
             mParent.addView(mWeatherLayout);
         }
     }
@@ -166,5 +173,22 @@ public class WeatherLayoutManager implements WeatherManager.WeatherLayoutUpdateL
                 break;
         }
         return ly;
+    }
+
+    public void doAnimation(boolean visibility) {
+        if (null == mWeatherLayout) {
+            return;
+        }
+
+        if (visibility) {
+            if (mWeatherLayout.getAnimationState() == true) {
+                mWeatherLayout.startAnimation();
+            }
+            mWeatherLayout.startAnimation();
+        } else {
+            if (mWeatherLayout.getAnimationState() == true) {
+                mWeatherLayout.stopAnimation();
+            }
+        }
     }
 }

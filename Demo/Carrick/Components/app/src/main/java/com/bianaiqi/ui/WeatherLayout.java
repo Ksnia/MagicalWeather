@@ -17,7 +17,7 @@ import com.bianaiqi.weather.WeatherConstant;
 public abstract class WeatherLayout extends FrameLayout {
 
     public ImageView mWeatherIcon;
-    public boolean mIsPlaying;
+    private boolean mIsPlaying;
     private Context mContext;
 
     public WeatherLayout(Context context) {
